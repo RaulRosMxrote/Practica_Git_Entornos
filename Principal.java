@@ -1,12 +1,28 @@
-import java.time.LocalDateTime;
+import java.util.Scanner;
 
 public class Principal {
     public static void main(String[] args) {
-        System.out.println("Hola mundo");
-        mostrarFechaHora();
+        Scanner teclado = new Scanner(System.in);
+        System.out.print("¿Cuántos usuarios desea crear?: ");
+        int cantidad = teclado.nextInt();
+        
+        Usuario[] lista = crearUsuarios(cantidad);
+        
+        for (Usuario u : lista) {
+            System.out.println("Nombre: " + u.nombre + " " + u.apellidos + " - Email: " + u.email);
+        }
     }
 
-    public static void mostrarFechaHora() {
-        System.out.println("Fecha y hora actual: " + LocalDateTime.now());
+    public static Usuario[] crearUsuarios(int n) {
+        Scanner kb = new Scanner(System.in);
+        Usuario[] usuarios = new Usuario[n];
+        for (int i = 0; i < n; i++) {
+            usuarios[i] = new Usuario();
+            System.out.println("Usuario " + (i+1));
+            System.out.print("Nombre: "); usuarios[i].nombre = kb.nextLine();
+            System.out.print("Apellidos: "); usuarios[i].apellidos = kb.nextLine();
+            System.out.print("Email: "); usuarios[i].email = kb.nextLine();
+        }
+        return usuarios;
     }
 }
